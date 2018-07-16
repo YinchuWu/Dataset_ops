@@ -1,0 +1,18 @@
+{
+    "annotations": [],
+    "categories": [
+        {
+            "name": "4",
+            "id": 1,
+            "supercategory": "4"
+        }
+    ],
+    "images": [
+        {
+            "width": 1080,
+            "id": 1,
+            "file_name": "frames_00901.jpg",
+            "height": 1920
+        }
+    ]
+}
