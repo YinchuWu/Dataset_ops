@@ -4,10 +4,11 @@ import numpy as np
 import shutil
 from prettytable import PrettyTable
 from PIL import Image
+from sklearn.cluster import KMeans
 
 
 class data_analysis(object):
-    def __init__(self, classes, image_size=(1920, 1080), label_map='label_map.txt', ann_path='./'):
+    def __init__(self, classes, image_size=(1080, 1920), label_map='label_map.txt', ann_path='./'):
         ''''' 
         :param xml: 所有Pascal VOC的xml文件路径组成的列表 
         :param ann_path: ann_path 
@@ -42,7 +43,7 @@ class data_analysis(object):
         #     for line in f.readlines():
 
     def init_Analysis(self):
-        ann_lists = glob.glob(self.ann_path + 'dataset/test/Annotations/*.txt')
+        ann_lists = glob.glob(self.ann_path + './Annotations/*.txt')
         bbox_width = np.zeros(self.class_num, float)
         bbox_height = np.zeros(self.class_num, float)
         for item in ann_lists:
@@ -71,9 +72,9 @@ class data_analysis(object):
 
         for i in range(self.class_num):
             self.bbox_width_averaged[i] = bbox_width[i] * \
-                self.image_size[0] / self.bbox_nums[i]
-            self.bbox_height_averaged[i] = bbox_height[i] * \
                 self.image_size[1] / self.bbox_nums[i]
+            self.bbox_height_averaged[i] = bbox_height[i] * \
+                self.image_size[0] / self.bbox_nums[i]
 
     def show_distribution(self):
         table = PrettyTable(['Category'] + self.classes_name)
@@ -129,4 +130,4 @@ class data_analysis(object):
 
 
 a = data_analysis(7)
-# a.sepdata_categories(0.9)
+# a.k_means_bbox()
